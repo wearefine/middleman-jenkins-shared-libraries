@@ -85,17 +85,7 @@ def call(body) {
             stage('Deploy'){
               milestone label: 'Deploy'
               retry(2) {
-                for ( e in config.DEPLOY ) {
-                  if (e.key == env.BRANCH_NAME){
-                    if (config.SSH_AGENT_ID) {
-                      sshagent([config.SSH_AGENT_ID]) {
-                        rvm(e.value)
-                      }
-                    } else {
-                      rvm(e.value)
-                    }
-                  }
-                }
+                deploy(env.BRANCH_NAME, config.SSH_AGENT_ID, config.DEPLOY)
               }
               currentBuild.result = 'SUCCESS'
             }

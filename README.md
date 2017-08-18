@@ -37,8 +37,8 @@ middlemanApp {
   RUBY_VERSION = "ruby-x.x.x"
   RUBY_GEMSET = "app-name"
   DEPLOY =  ['master': 'scp -P <port> -rp build/ <username>@<hostname>:<deploy directory>', 'stage': '', 'dev': '', ... ]
-  SSH_AGENT_ID = ''
-  NODE_INSTALL_NAME = ''
+  SSH_AGENT_ID = 'ssh-login-key'
+  NODE_INSTALL_NAME = 'lts/boron'
   SLACK_CHANNEL = '#deploys'
   DEBUG = 'fase'
 }
@@ -46,16 +46,16 @@ middlemanApp {
 
 ### Required Parameters
 
-- RUBY_VERSION: SSH URL given by WPEngine for the production repo [String]
-- RUBY_GEMSET: SSH URL given by WPEngine for the staging repo [String]
-- DEPLOY: This is a map of branch and script key value pairs [Map] See [below](#Deploy Configuration) for more details
-- NODE_INSTALL_NAME: The Nodejs plugin uses names to identify installs in Jenkins, enter that value here [String]
+- **RUBY_VERSION:** Ruby version to use. [String]
+- **RUBY_GEMSET:** Name of the gemset to create. [String]
+- **DEPLOY:** This is a map of branch and script key value pairs [Map] See [below](#Deploy Configuration) for more details
+- **NODE_INSTALL_NAME:** The Nodejs plugin uses names to identify installs in Jenkins, enter that value here [String]
 
 ### Optional Parameters
 
-- SSH_AGENT_ID: If you need to SCP files onto a machine then you need to add the sshagent plugin and give the auth ID here. [String]
-- SLACK_CHANNEL: Specify the Slack channel to use for notifications. [String] Default: #deploys
-- DEBUG: Turn off Slack notifications and turn on more console output. [String] Default: false
+- **SSH_AGENT_ID:** If you need to SCP files onto a machine then you need to add the sshagent plugin and give the auth ID here. [String]
+- **SLACK_CHANNEL:** Specify the Slack channel to use for notifications. [String] Default: #deploys
+- **DEBUG:** Turn off Slack notifications and turn on more console output. [String] Default: false
 
 ## Deploy Configuration
 

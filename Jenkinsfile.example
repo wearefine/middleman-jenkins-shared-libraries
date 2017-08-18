@@ -1,0 +1,9 @@
+middlemanApp {
+  RUBY_VERSION = "ruby-x.x.x"
+  RUBY_GEMSET = "app-name"
+  DEPLOY =  ['master': 'scp -P <port> -rp build/ <username>@<hostname>:<deploy directory>', 'stage': '', 'dev': '', ... ]
+  SSH_AGENT_ID = '' // Optional param if you need to SCP files onto a machine then you need to add the sshagent plugin and give the auth ID here.
+  NODE_INSTALL_NAME = '' // Nodejs plugin uses names to identify installs in Jenkins, enter that value here
+  // SLACK_CHANNEL = '#channel' // Optional param to specify the Slack channel to use for notifications
+  // DEBUG = 'true' // Optional param to turn off Slack notifications and turn on more console output
+}

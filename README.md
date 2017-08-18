@@ -7,7 +7,9 @@ Deploying your middleman site on every change should be a smooth process. With t
 If you're new to Jenkins pipelines you should go read the [documentation](https://jenkins.io/doc/book/pipeline/) before proceeding to get a sense for what to expect using this code. The rest of the setup process will assume you have basic knowledge of Jenkins or CI/CD jobs in general.
 
 OS
+  - rvm installed in the jenkins user
   - git
+  - build-essential
 
 Jenkins
   - Version: > 2.7.3 - tested on (2.19.4 LTS)
@@ -40,7 +42,7 @@ middlemanApp {
   SSH_AGENT_ID = 'ssh-login-key'
   NODE_INSTALL_NAME = 'lts/boron'
   SLACK_CHANNEL = '#deploys'
-  DEBUG = 'fase'
+  DEBUG = 'false'
 }
 ```
 

@@ -55,7 +55,7 @@ middlemanApp {
 
 ### Optional Parameters
 
-- **SSH_AGENT_ID:** If you need to SCP files onto a machine then you need to add the sshagent plugin and give the auth ID here. [String]
+- **SSH_AGENT_ID:** If you need to SCP files onto a machine then you need to add the sshagent plugin and give the credentialsId here. [String]
 - **SLACK_CHANNEL:** Specify the Slack channel to use for notifications. [String] Default: #deploys
 - **DEBUG:** Turn off Slack notifications and turn on more console output. [String] Default: false
 

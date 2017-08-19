@@ -94,6 +94,7 @@ def call(body) {
                   } else {
                     mmRvm(command)
                   }
+                }
               }
               currentBuild.result = 'SUCCESS'
             }

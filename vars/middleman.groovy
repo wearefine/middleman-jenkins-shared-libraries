@@ -34,7 +34,7 @@ def call(body) {
     node {
       timestamps {
         if (config.DEBUG == 'false') {
-          notifySlack(config.SLACK_CHANNEL)
+          mmSlack(config.SLACK_CHANNEL)
         }
 
         nodejs(nodeJSInstallationName: config.NODE_INSTALL_NAME) {
@@ -46,7 +46,7 @@ def call(body) {
           } catch(Exception e) {
             currentBuild.result = 'FAILURE'
             if (config.DEBUG == 'false') {
-              notifySlack(config.SLACK_CHANNEL)
+              mmSlack(config.SLACK_CHANNEL)
             }
             throw e
           }
@@ -55,14 +55,14 @@ def call(body) {
             stage('Install Dependancies'){
               milestone label: 'Install Dependancies'
               retry(2) {
-                rvm('bundle install')
+                mmRvm('bundle install')
               }
               currentBuild.result = 'SUCCESS'
             }
           } catch(Exception e) {
             currentBuild.result = 'FAILURE'
             if (config.DEBUG == 'false') {
-              notifySlack(config.SLACK_CHANNEL)
+              mmSlack(config.SLACK_CHANNEL)
             }
             throw e
           }
@@ -70,13 +70,13 @@ def call(body) {
           try {
             stage('Build'){
               milestone label: 'Build'
-              rvm('middleman build')
+              mmRvm('middleman build')
               currentBuild.result = 'SUCCESS'
             }
           } catch(Exception e) {
             currentBuild.result = 'FAILURE'
             if (config.DEBUG == 'false') {
-              notifySlack(config.SLACK_CHANNEL)
+              mmSlack(config.SLACK_CHANNEL)
             }
             throw e
           }
@@ -85,19 +85,19 @@ def call(body) {
             stage('Deploy'){
               milestone label: 'Deploy'
               retry(2) {
-                deploy(env.BRANCH_NAME, config.SSH_AGENT_ID, config.DEPLOY)
+                mmDeploy(env.BRANCH_NAME, config.SSH_AGENT_ID, config.DEPLOY)
               }
               currentBuild.result = 'SUCCESS'
             }
           } catch(Exception e) {
             currentBuild.result = 'FAILURE'
             if (config.DEBUG == 'false') {
-              notifySlack(config.SLACK_CHANNEL)
+              mmSlack(config.SLACK_CHANNEL)
             }
             throw e
           }
           if (config.DEBUG == 'false') {
-            notifySlack(config.SLACK_CHANNEL)
+            mmSlack(config.SLACK_CHANNEL)
           }
       } // nodejsRuntime
     } // timestamps

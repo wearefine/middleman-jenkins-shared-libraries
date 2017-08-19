@@ -6,10 +6,10 @@ def call(String branch, String agentId, Map deploy) {
     if (e.key == branch){
       if (agentId) {
         sshagent([agentId]) {
-          rvm(e.value)
+          mmRvm(e.value)
         }
       } else {
-        rvm(e.value)
+        mmRvm(e.value)
       }
     }
   }
